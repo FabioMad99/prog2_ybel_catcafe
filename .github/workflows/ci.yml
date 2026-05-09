@@ -1,0 +1,32 @@
+name: CI
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 25
+
+      - name: Build project
+        working-directory: Cat-Cafe
+        run: ./gradlew build
+
+      - name: Run tests
+        working-directory: Cat-Cafe
+        run: ./gradlew test
+
+      - name: Check formatting
+        working-directory: Cat-Cafe
+        run: ./gradlew spotlessCheck
