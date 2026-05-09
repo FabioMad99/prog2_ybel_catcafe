@@ -20,13 +20,13 @@ jobs:
                   java-version: 25
 
             - name: Grant execute permission to gradlew
-              run: chmod +x Cat-Cafe/gradlew
+              run: chmod +x gradlew
 
             - name: Build project
-              run: ./Cat-Cafe/gradlew build
+              run: ./gradlew build
 
             - name: Run tests
-              run: ./Cat-Cafe/gradlew test
+              run: ./gradlew test
 
             - name: Check formatting
-              run: ./Cat-Cafe/gradlew spotlessCheck
+              run: ./gradlew spotlessCheck
