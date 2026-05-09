@@ -1,29 +1,32 @@
 name: CI
 
 on:
-  push:
-    branches: [ "main", "master" ]
-  pull_request:
+    push:
+        branches: [ "main", "master" ]
+    pull_request:
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
+    build:
+        runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v4
 
-      - name: Set up JDK
-        uses: actions/setup-java@v4
-        with:
-          distribution: temurin
-          java-version: 25
+            - name: Set up JDK
+              uses: actions/setup-java@v4
+              with:
+                  distribution: temurin
+                  java-version: 25
 
-      - name: Build project
-        run: ./gradlew build
+            - name: Grant execute permission to gradlew
+              run: chmod +x Cat-Cafe/gradlew
 
-      - name: Run tests
-        run: ./gradlew test
+            - name: Build project
+              run: ./Cat-Cafe/gradlew build
 
-      - name: Check formatting
-        run: ./gradlew spotlessCheck
+            - name: Run tests
+              run: ./Cat-Cafe/gradlew test
+
+            - name: Check formatting
+              run: ./Cat-Cafe/gradlew spotlessCheck
